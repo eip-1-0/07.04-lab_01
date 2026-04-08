@@ -4,20 +4,53 @@
     ":configMigration",
     "docker:pinDigests"
   ],
+  "timezone": "Europe/Kiev",
   "enabledManagers": [
     "dockerfile",
     "github-actions"
   ],
   "dependencyDashboard": true,
-  "prHourlyLimit": 0,
-  "prConcurrentLimit": 10,
+  "prHourlyLimit": 2,
+  "prConcurrentLimit": 4,
+  "schedule": [
+    "before 07:00 on Monday",
+    "before 07:00 on Thursday"
+  ],
   "labels": [
-    "dependencies"
+    "dependencies",
+    "renovate"
   ],
   "packageRules": [
     {
-      "matchManagers": ["github-actions", "dockerfile"],
-      "matchUpdateTypes": ["minor", "patch"]
+      "description": "Group safe GitHub Actions updates into a single PR",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest"
+      ],
+      "groupName": "GitHub Actions dependencies"
+    },
+    {
+      "description": "Group safe Docker image updates into a single PR",
+      "matchManagers": [
+        "dockerfile"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest"
+      ],
+      "groupName": "Docker image dependencies"
+    },
+    {
+      "description": "Require manual approval for major updates",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "dependencyDashboardApproval": true
     }
   ]
 }
