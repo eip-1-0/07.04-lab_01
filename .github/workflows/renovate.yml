@@ -15,9 +15,13 @@ jobs:
     name: Run Renovate
     runs-on: ubuntu-latest
     env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
       RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN != '' && secrets.RENOVATE_TOKEN || secrets.GITHUB_TOKEN }}
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Check token mode
         run: |
           if [ -n "${{ secrets.RENOVATE_TOKEN }}" ]; then
