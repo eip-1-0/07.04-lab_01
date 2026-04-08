@@ -26,11 +26,14 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install linter dependencies
+        run: npm install --no-save htmlhint stylelint stylelint-config-standard
+
       - name: Run HTML linter
-        run: npx --yes htmlhint index.html
+        run: npx htmlhint index.html
 
       - name: Run CSS linter
-        run: npx --yes --package stylelint --package stylelint-config-standard stylelint "*.css"
+        run: npx stylelint "*.css"
 
   build-docker-image:
     name: Build Docker image
