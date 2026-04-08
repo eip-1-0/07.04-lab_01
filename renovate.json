@@ -8,14 +8,15 @@
     "github-actions"
   ],
   "dependencyDashboard": true,
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 10,
   "labels": [
     "dependencies"
   ],
   "packageRules": [
     {
       "matchManagers": ["github-actions", "dockerfile"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true
+      "matchUpdateTypes": ["minor", "patch"]
     }
   ]
 }
