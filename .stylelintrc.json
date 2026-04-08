@@ -1,0 +1,9 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "alpha-value-notation": null,
+    "font-family-name-quotes": null,
+    "import-notation": "string",
+    "selector-class-pattern": null
+  }
+}
