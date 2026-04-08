@@ -1,7 +1,19 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:recommended",
+    ":configMigration"
+  ],
+  "enabledManagers": [
+    "dockerfile",
+    "github-actions"
+  ],
+  "dependencyDashboard": true,
+  "labels": [
+    "dependencies"
+  ],
   "packageRules": [
     {
+      "matchManagers": ["github-actions", "dockerfile"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     }
